@@ -48,7 +48,7 @@ export default async function Footer() {
         <div>
           <h4 className="font-heading text-lg mb-3">Contact</h4>
           <ul className="space-y-2 text-sm text-beige">
-            <li>{settings?.email || "hello@sunfoodsinc.com"}</li>
+            <li>{settings?.email || "info@sunfoods.ca"}</li>
             <li>{settings?.phone || "Phone available on request"}</li>
             <li>{settings?.address || "Toronto, Ontario, Canada"}</li>
             <li>{settings?.serviceArea || "Currently serving the Greater Toronto Area."}</li>
@@ -57,7 +57,7 @@ export default async function Footer() {
       </div>
 
       <div className="border-t border-white/10 py-4 text-center text-xs text-beige">
-        &copy; {new Date().getFullYear()} SUN Foods Inc. All rights reserved.
+        &copy; {new Date().getFullYear()} SUN Foods. All rights reserved.
       </div>
     </footer>
   );

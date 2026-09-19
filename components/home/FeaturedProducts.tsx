@@ -7,7 +7,7 @@ async function getFeaturedProducts(): Promise<ProductCardData[]> {
   try {
     await connectToDatabase();
     const products = await Product.find({ active: true, featured: true })
-      .sort({ createdAt: -1 })
+      .sort({ createdAt: 1 })
       .limit(4)
       .lean();
     return products.map((p) => ({

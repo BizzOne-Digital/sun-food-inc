@@ -18,7 +18,7 @@ export default function SafeImage({ src, alt, ...rest }: SafeImageProps) {
     <Image
       {...rest}
       src={resolved}
-      alt={alt || "SUN Foods Inc"}
+      alt={alt || "SUN Foods"}
       onError={() => setErrored(true)}
       unoptimized={resolved.startsWith("/api/uploads/")}
     />

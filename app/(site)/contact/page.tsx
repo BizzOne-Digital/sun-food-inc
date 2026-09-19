@@ -4,8 +4,8 @@ import SiteSettings from "@/models/SiteSettings";
 import ContactForm from "@/components/contact/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Us | SUN Foods Inc",
-  description: "Get in touch with SUN Foods Inc, serving the Greater Toronto Area.",
+  title: "Contact Us | SUN Foods",
+  description: "Get in touch with SUN Foods, serving the Greater Toronto Area.",
 };
 
 async function getSettings() {
@@ -34,7 +34,7 @@ export default async function ContactPage() {
         <div className="bg-soft-bg rounded-2xl p-6 flex flex-col gap-4 h-fit">
           <div>
             <h3 className="font-semibold text-brown">Email</h3>
-            <p className="text-brown/70 text-sm">{settings?.email || "hello@sunfoodsinc.com"}</p>
+            <p className="text-brown/70 text-sm">{settings?.email || "info@sunfoods.ca"}</p>
           </div>
           <div>
             <h3 className="font-semibold text-brown">Phone</h3>

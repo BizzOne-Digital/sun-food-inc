@@ -2,6 +2,7 @@ import connectToDatabase from "@/lib/mongodb";
 import PageContent from "@/models/PageContent";
 import Hero from "@/components/home/Hero";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
+import FreeFromBadges from "@/components/home/FreeFromBadges";
 import EarlyBirdBanner from "@/components/home/EarlyBirdBanner";
 import OurStory from "@/components/home/OurStory";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
@@ -35,6 +36,7 @@ export default async function HomePage() {
       />
       {visible.earlyBird !== false && <EarlyBirdBanner />}
       {visible.featured !== false && <FeaturedProducts />}
+      <FreeFromBadges />
       {visible.ourStory !== false && (
         <OurStory heading={content?.ourStoryHeading || undefined} body={content?.ourStoryBody || undefined} />
       )}

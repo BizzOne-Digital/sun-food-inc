@@ -6,8 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "About Us | SUN Foods Inc",
-  description: "The story, tradition, and wellness philosophy behind SUN Foods Inc.",
+  title: "About Us | SUN Foods",
+  description: "The story, tradition, and wellness philosophy behind SUN Foods.",
 };
 
 async function getAboutContent() {
@@ -74,7 +74,7 @@ export default async function AboutPage() {
             </h1>
             <p className="text-brown/80 text-lg leading-relaxed">
               {content?.heroSubheading ||
-                "SUN Foods Inc was founded by Kumar Padmanabhuni to bring the warmth of South Indian family kitchens to modern, plant-based nutrition — starting right here in Toronto."}
+                "SUN Foods was founded by Kumar Padmanabhuni to bring the warmth of South Indian family kitchens to modern, plant-based nutrition — starting right here in Toronto."}
             </p>
           </ScrollReveal>
         </div>
@@ -96,7 +96,7 @@ export default async function AboutPage() {
             <h2 className="font-heading text-3xl font-bold text-brown mb-4">Origin & Tradition</h2>
             <p className="text-brown/80 leading-relaxed text-lg">
               {blocks.origin ||
-                "Sunnundalu has been a staple sweet in South Indian households for generations — a lentil and sesame treat made with love and shared at every family gathering. SUN Foods Inc keeps that tradition alive, made fresh for the Toronto community."}
+                "Sunnundalu has been a staple sweet in South Indian households for generations — a lentil and sesame treat made with love and shared at every family gathering. SUN Foods keeps that tradition alive, made fresh for the Toronto community."}
             </p>
           </ScrollReveal>
         </div>

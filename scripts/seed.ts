@@ -1,5 +1,5 @@
 /**
- * Idempotent database seed script for SUN Foods Inc.
+ * Idempotent database seed script for SUN Foods.
  * Run with: npx tsx scripts/seed.ts   (requires a real MONGODB_URI in .env.local)
  */
 import mongoose from "mongoose";
