@@ -40,7 +40,7 @@ async function seed() {
   // Categories
   const categoryDefs = [
     { name: "Protein Bars", slug: "protein-bars", description: "Plant-based protein bars for everyday energy.", image: "/cat1.png" },
-    { name: "Sunnundalu", slug: "sunnundalu", description: "Traditional South Indian lentil and sesame sweets.", image: "/cat2.png" },
+    { name: "Sunnundalu", slug: "sunnundalu", description: "Traditional South Indian urad dal and ghee sweets.", image: "/cat2.png" },
     { name: "Kids Bars", slug: "kids-bars", description: "Family-friendly bars made with kids in mind.", image: "/cat3.png" },
   ];
   const categoryDocs: Record<string, mongoose.Types.ObjectId> = {};
@@ -87,7 +87,7 @@ async function seed() {
     {
       name: "Traditional Sunnundalu (10pc)",
       slug: "traditional-sunnundalu-10pc",
-      shortDescription: "Ten traditional South Indian lentil and sesame sweets.",
+      shortDescription: "Ten traditional South Indian urad dal and ghee sweets.",
       price: 15,
       category: categoryDocs["sunnundalu"],
       stock: 80,
@@ -95,6 +95,8 @@ async function seed() {
       featured: true,
       badges: ["Family Favorite"],
       mainImage: "/pro3.png",
+      ingredients:
+        "Originally made from urad dal, ghee and sugar. Variants may include peanuts, sugar cane juice sugar or dates paste in place of refined sugar, and peanut, cashew or almond additions.",
     },
     {
       name: "Kids Bars (8pc)",

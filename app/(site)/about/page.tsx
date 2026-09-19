@@ -86,7 +86,7 @@ export default async function AboutPage() {
           <ScrollReveal className="relative aspect-[4/3] rounded-3xl overflow-hidden order-2 md:order-1">
             <Image
               src="/about1.png"
-              alt="Sesame, lentils and dates used in traditional sunnundalu"
+              alt="Urad dal, ghee and dates used in traditional sunnundalu"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -96,7 +96,7 @@ export default async function AboutPage() {
             <h2 className="font-heading text-3xl font-bold text-brown mb-4">Origin & Tradition</h2>
             <p className="text-brown/80 leading-relaxed text-lg">
               {blocks.origin ||
-                "Sunnundalu has been a staple sweet in South Indian households for generations — a lentil and sesame treat made with love and shared at every family gathering. SUNN Foods keeps that tradition alive, made fresh for the Toronto community."}
+                "Sunnundalu has been a staple sweet in South Indian households for generations — a urad dal and ghee treat made with love and shared at every family gathering. SUNN Foods keeps that tradition alive, made fresh for the Toronto community."}
             </p>
           </ScrollReveal>
         </div>
