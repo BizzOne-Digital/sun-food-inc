@@ -21,7 +21,7 @@ export interface ISiteSettings extends mongoose.Document {
 const SiteSettingsSchema = new Schema<ISiteSettings>(
   {
     businessName: { type: String, default: "SUN Foods" },
-    email: { type: String, default: "info@sunfoods.ca" },
+    email: { type: String, default: "info@sunnfoods.ca" },
     phone: { type: String, default: "" },
     address: { type: String, default: "Toronto, Ontario, Canada" },
     serviceArea: { type: String, default: "Currently serving the Greater Toronto Area." },

@@ -34,7 +34,7 @@ export default async function ContactPage() {
         <div className="bg-soft-bg rounded-2xl p-6 flex flex-col gap-4 h-fit">
           <div>
             <h3 className="font-semibold text-brown">Email</h3>
-            <p className="text-brown/70 text-sm">{settings?.email || "info@sunfoods.ca"}</p>
+            <p className="text-brown/70 text-sm">{settings?.email || "info@sunnfoods.ca"}</p>
           </div>
           <div>
             <h3 className="font-semibold text-brown">Phone</h3>

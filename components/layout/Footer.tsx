@@ -48,7 +48,7 @@ export default async function Footer() {
         <div>
           <h4 className="font-heading text-lg mb-3">Contact</h4>
           <ul className="space-y-2 text-sm text-beige">
-            <li>{settings?.email || "info@sunfoods.ca"}</li>
+            <li>{settings?.email || "info@sunnfoods.ca"}</li>
             <li>{settings?.phone || "Phone available on request"}</li>
             <li>{settings?.address || "Toronto, Ontario, Canada"}</li>
             <li>{settings?.serviceArea || "Currently serving the Greater Toronto Area."}</li>
