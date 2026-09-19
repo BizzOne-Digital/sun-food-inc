@@ -20,7 +20,7 @@ export interface ISiteSettings extends mongoose.Document {
 
 const SiteSettingsSchema = new Schema<ISiteSettings>(
   {
-    businessName: { type: String, default: "SUN Foods" },
+    businessName: { type: String, default: "SUNN Foods" },
     email: { type: String, default: "info@sunnfoods.ca" },
     phone: { type: String, default: "" },
     address: { type: String, default: "Toronto, Ontario, Canada" },
@@ -29,11 +29,11 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
     socialInstagram: { type: String, default: "" },
     socialTwitter: { type: String, default: "" },
     footerText: { type: String, default: "Nourishing tradition, made for today." },
-    seoTitle: { type: String, default: "SUN Foods | Plant-Based Protein Bars & Sunnundalu" },
+    seoTitle: { type: String, default: "SUNN Foods | Plant-Based Protein Bars & Sunnundalu" },
     seoDescription: {
       type: String,
       default:
-        "SUN Foods makes plant-based protein bars, traditional sunnundalu, and kids bars, proudly serving Toronto.",
+        "SUNN Foods makes plant-based protein bars, traditional sunnundalu, and kids bars, proudly serving Toronto.",
     },
     earlyBirdEnabled: { type: Boolean, default: true },
     earlyBirdText: {

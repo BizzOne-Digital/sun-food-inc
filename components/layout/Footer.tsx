@@ -57,7 +57,7 @@ export default async function Footer() {
       </div>
 
       <div className="border-t border-white/10 py-4 text-center text-xs text-beige">
-        &copy; {new Date().getFullYear()} SUN Foods. All rights reserved.
+        &copy; {new Date().getFullYear()} SUNN Foods. All rights reserved.
       </div>
     </footer>
   );

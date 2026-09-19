@@ -4,8 +4,8 @@ import FAQ from "@/models/FAQ";
 import FAQSearchable from "@/components/faq/FAQSearchable";
 
 export const metadata: Metadata = {
-  title: "FAQ | SUN Foods",
-  description: "Frequently asked questions about SUN Foods products and orders.",
+  title: "FAQ | SUNN Foods",
+  description: "Frequently asked questions about SUNN Foods products and orders.",
 };
 
 async function getFaqs() {

@@ -48,9 +48,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const product = await getProduct(slug);
-  if (!product) return { title: "Product Not Found | SUN Foods" };
+  if (!product) return { title: "Product Not Found | SUNN Foods" };
   return {
-    title: product.seoTitle || `${product.name} | SUN Foods`,
+    title: product.seoTitle || `${product.name} | SUNN Foods`,
     description: product.seoDescription || product.shortDescription || product.name,
   };
 }

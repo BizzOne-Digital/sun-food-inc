@@ -7,7 +7,7 @@ interface OurStoryProps {
 
 export default function OurStory({
   heading = "Our Story",
-  body = "SUN Foods began with a simple family recipe for sunnundalu, passed down through generations in South India. Founder Kumar Padmanabhuni brought that same warmth and care to Toronto, blending heritage flavors with modern plant-based nutrition — so every bar and bite feels like home, wherever you are.",
+  body = "SUNN Foods began with a simple family recipe for sunnundalu, passed down through generations in South India. Founder Kumar Padmanabhuni brought that same warmth and care to Toronto, blending heritage flavors with modern plant-based nutrition — so every bar and bite feels like home, wherever you are.",
 }: OurStoryProps) {
   return (
     <section className="bg-white">
@@ -19,7 +19,7 @@ export default function OurStory({
         <div className="order-1 md:order-2 relative aspect-[4/3] rounded-2xl overflow-hidden border border-beige">
           <Image
             src="/ourstory.png"
-            alt="SUN Foods traditional ingredients"
+            alt="SUNN Foods traditional ingredients"
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 50vw"

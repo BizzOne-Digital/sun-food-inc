@@ -23,7 +23,7 @@ export default function Hero({
     <section className="relative overflow-hidden min-h-[560px] flex items-center">
       <Image
         src="/mobile-hero.png"
-        alt="SUN Foods products"
+        alt="SUNN Foods products"
         fill
         priority
         className="object-cover md:hidden"
@@ -31,7 +31,7 @@ export default function Hero({
       />
       <Image
         src="/hero.png"
-        alt="SUN Foods products"
+        alt="SUNN Foods products"
         fill
         priority
         className="object-cover hidden md:block"

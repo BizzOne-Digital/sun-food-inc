@@ -44,7 +44,7 @@ export default function Logo({ showTagline = false, className = "" }: LogoProps)
         />
       </svg>
       <span className="flex flex-col leading-tight">
-        <span className="font-heading text-xl text-brown font-bold">SUN Foods</span>
+        <span className="font-heading text-xl text-brown font-bold">SUNN Foods</span>
         {showTagline && (
           <span className="text-xs text-leaf font-medium">Good Food. Brighter Days.</span>
         )}

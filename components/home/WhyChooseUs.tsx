@@ -11,7 +11,7 @@ export default function WhyChooseUs() {
     <section className="bg-soft-bg">
       <div className="container-page py-16">
         <h2 className="font-heading text-3xl font-bold text-brown text-center mb-10">
-          Why Choose SUN Foods
+          Why Choose SUNN Foods
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
           {FEATURES.map((f) => (

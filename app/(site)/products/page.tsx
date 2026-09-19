@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ProductsBrowser from "@/components/products/ProductsBrowser";
 
 export const metadata: Metadata = {
-  title: "Shop Products | SUN Foods",
+  title: "Shop Products | SUNN Foods",
   description: "Shop plant-based protein bars, traditional sunnundalu, and kids bars.",
 };
 

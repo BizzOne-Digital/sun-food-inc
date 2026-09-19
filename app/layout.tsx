@@ -17,9 +17,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "SUN Foods | Plant-Based Protein Bars & Sunnundalu",
+  title: "SUNN Foods | Plant-Based Protein Bars & Sunnundalu",
   description:
-    "SUN Foods makes plant-based protein bars, traditional sunnundalu, and kids bars, proudly serving Toronto.",
+    "SUNN Foods makes plant-based protein bars, traditional sunnundalu, and kids bars, proudly serving Toronto.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

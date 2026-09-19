@@ -4,8 +4,8 @@ import SiteSettings from "@/models/SiteSettings";
 import ContactForm from "@/components/contact/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Us | SUN Foods",
-  description: "Get in touch with SUN Foods, serving the Greater Toronto Area.",
+  title: "Contact Us | SUNN Foods",
+  description: "Get in touch with SUNN Foods, serving the Greater Toronto Area.",
 };
 
 async function getSettings() {
