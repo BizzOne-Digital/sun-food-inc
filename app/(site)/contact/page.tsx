@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: "Get in touch with SUNN Foods, serving the Greater Toronto Area.",
 };
 
+export const dynamic = "force-dynamic";
+
 async function getSettings() {
   try {
     await connectToDatabase();

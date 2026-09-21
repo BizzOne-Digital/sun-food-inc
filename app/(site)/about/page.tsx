@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   description: "The story, tradition, and wellness philosophy behind SUNN Foods.",
 };
 
+export const dynamic = "force-dynamic";
+
 async function getAboutContent() {
   try {
     await connectToDatabase();

@@ -10,6 +10,8 @@ import CategoriesGrid from "@/components/home/CategoriesGrid";
 import FAQPreview from "@/components/home/FAQPreview";
 import NewsletterSignup from "@/components/home/NewsletterSignup";
 
+export const dynamic = "force-dynamic";
+
 async function getHomeContent() {
   try {
     await connectToDatabase();
