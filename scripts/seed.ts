@@ -71,7 +71,6 @@ async function seed() {
       featured: true,
       badges: ["New", "High in Saturated Fat"],
       mainImage: "/pro1.png",
-      galleryImages: ["/fop-high-sat-fat.png"],
       nutritionInformation:
         "Nutrition Facts — Per 1 bar (40 g)\n" +
         "Calories: 170\n" +
