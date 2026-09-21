@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectToDatabase from "@/lib/mongodb";
 import Product from "@/models/Product";
+import "@/models/Category";
 import { requireAdmin } from "@/lib/adminAuth";
 
 export const runtime = "nodejs";
