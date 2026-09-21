@@ -69,8 +69,24 @@ async function seed() {
       stock: 200,
       packSize: "1 bar",
       featured: true,
-      badges: ["New"],
+      badges: ["New", "High in Saturated Fat"],
       mainImage: "/pro1.png",
+      galleryImages: ["/fop-high-sat-fat.png"],
+      nutritionInformation:
+        "Nutrition Facts — Per 1 bar (40 g)\n" +
+        "Calories: 170\n" +
+        "Fat: 6 g (8% DV)\n" +
+        "  Saturated: 3.5 g + Trans: 0 g (18% DV)\n" +
+        "Carbohydrate: 25 g\n" +
+        "  Fibre: 7 g (25% DV)\n" +
+        "  Sugars: 12 g (12% DV)\n" +
+        "Protein: 5 g\n" +
+        "Cholesterol: 10 mg\n" +
+        "Sodium: 10 mg (0% DV)\n" +
+        "Potassium: 0 mg (0% DV)\n" +
+        "Calcium: 40 mg (3% DV)\n" +
+        "Iron: 1.8 mg (10% DV)\n\n" +
+        "This product carries the Health Canada front-of-pack symbol: High in Saturated Fat.",
     },
     {
       name: "Protein Bar Box (6-Pack)",

@@ -112,7 +112,7 @@ export default async function ProductDetailPage({
             </div>
             <div>
               <h2 className="font-heading text-xl font-semibold text-brown mb-2">Nutrition Information</h2>
-              <p className="text-brown/80 leading-relaxed">{product.nutritionInformation}</p>
+              <p className="text-brown/80 leading-relaxed whitespace-pre-line">{product.nutritionInformation}</p>
             </div>
           </div>
         </div>
