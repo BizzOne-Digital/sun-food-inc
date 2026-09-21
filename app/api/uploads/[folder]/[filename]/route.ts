@@ -27,12 +27,25 @@ export async function GET(
       return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
 
-    const buffer = Buffer.from(upload.data as unknown as Buffer);
+    const rawData = upload.data as unknown;
+    let buffer: Buffer;
+    if (Buffer.isBuffer(rawData)) {
+      buffer = rawData;
+    } else if (rawData && typeof rawData === "object" && "buffer" in (rawData as Record<string, unknown>)) {
+      // mongoose .lean() can return BSON Binary wrapper objects instead of a plain Buffer
+      buffer = Buffer.from((rawData as { buffer: ArrayBufferLike }).buffer);
+    } else {
+      buffer = Buffer.from(rawData as ArrayBuffer);
+    }
 
-    return new Response(buffer, {
+    // Always derive Content-Length from the actual bytes being sent, never a stored
+    // field — a mismatch causes HTTP clients to hang waiting for bytes that never arrive.
+    const body = Uint8Array.from(buffer);
+
+    return new Response(body, {
       headers: {
         "Content-Type": upload.mimeType,
-        "Content-Length": String(upload.size),
+        "Content-Length": String(buffer.length),
         "Cache-Control": "public, max-age=31536000, immutable",
       },
     });
