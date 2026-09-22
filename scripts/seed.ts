@@ -61,9 +61,12 @@ async function seed() {
   // Products
   const productDefs = [
     {
-      name: "Protein Bar Single",
-      slug: "protein-bar-single",
-      shortDescription: "One plant-based protein bar, perfect for on the go.",
+      name: "Urad Protein Bar",
+      slug: "urad-protein-bar",
+      shortDescription: "The classic taste of Sunnundalu, reimagined in a bar.",
+      description:
+        "Our Urad Protein Bar brings the beloved South Indian sweet, Sunnundalu, into a modern, easy-to-enjoy format. Made from slow-roasted urad dal, pure ghee, and refined sugar, this bar captures the warmth, aroma, and melt-in-your-mouth richness of the original recipe.\n\nEach bar is handcrafted in small batches, preserving the traditional flavour while offering a convenient, individually wrapped snack you can enjoy anytime — at work, after meals, or on the go.",
+      ingredients: "Urad dal, ghee, refined sugar.",
       price: 1.99,
       category: categoryDocs["protein-bars"],
       stock: 200,
@@ -102,7 +105,9 @@ async function seed() {
     {
       name: "Traditional Sunnundalu (10pc)",
       slug: "traditional-sunnundalu-10pc",
-      shortDescription: "Ten traditional South Indian urad dal and ghee sweets.",
+      shortDescription: "Authentic Andhra tradition in every bite.",
+      description:
+        "Sunnundalu is a cherished South Indian sweet known for its rich aroma, velvety texture, and nourishing ingredients. Made from freshly roasted urad dal, pure ghee, and just the right amount of sweetness, each laddu delivers the comforting taste of home and tradition.\n\nOur Sunnundalu are handcrafted in small batches, following time-honoured methods that bring out the natural flavour of urad dal and the richness of ghee. Whether enjoyed during festivals, celebrations, or as a daily treat, Sunnundalu brings warmth and joy with every bite.",
       price: 15,
       category: categoryDocs["sunnundalu"],
       stock: 80,

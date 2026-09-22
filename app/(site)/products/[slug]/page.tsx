@@ -102,7 +102,7 @@ export default async function ProductDetailPage({
           <div className="mt-10 flex flex-col gap-6">
             <div>
               <h2 className="font-heading text-xl font-semibold text-brown mb-2">Description</h2>
-              <p className="text-brown/80 leading-relaxed">
+              <p className="text-brown/80 leading-relaxed whitespace-pre-line">
                 {product.description || "Description coming soon."}
               </p>
             </div>
