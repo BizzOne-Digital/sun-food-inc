@@ -72,7 +72,7 @@ async function seed() {
       stock: 200,
       packSize: "1 bar",
       featured: true,
-      badges: ["New", "High in Saturated Fat"],
+      badges: ["New"],
       mainImage: "/pro1.png",
       nutritionInformation:
         "Nutrition Facts — Per 1 bar (40 g)\n" +

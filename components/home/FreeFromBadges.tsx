@@ -6,17 +6,6 @@ const BADGES: { label: string; icon: React.ReactNode }[] = [
     ),
   },
   {
-    label: "Dairy Free",
-    icon: (
-      <path
-        d="M9 3h6l1 4-1 2v10a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9L8 7l1-4ZM4 20 20 4"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    ),
-  },
-  {
     label: "Egg Free",
     icon: (
       <path
@@ -36,27 +25,6 @@ const BADGES: { label: string; icon: React.ReactNode }[] = [
       />
     ),
   },
-  {
-    label: "Grain Free",
-    icon: (
-      <path
-        d="M12 3v18M8 7c0 2 4 2 4 4s-4 2-4 4M16 7c0 2-4 2-4 4s4 2 4 4M4 20 20 4"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-    ),
-  },
-  {
-    label: "No Refined Sugar",
-    icon: (
-      <path
-        d="M5 8h14l-1.5 10a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2L5 8Zm2-4h10M4 20 20 4"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    ),
-  },
 ];
 
 export default function FreeFromBadges() {
@@ -66,7 +34,7 @@ export default function FreeFromBadges() {
         <h2 className="font-heading text-2xl md:text-3xl font-bold text-brown text-center mb-10">
           Only the Best, Free From the Unwanted
         </h2>
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-6 md:gap-8">
+        <div className="grid grid-cols-3 gap-6 md:gap-8 max-w-xl mx-auto">
           {BADGES.map((b) => (
             <div key={b.label} className="flex flex-col items-center text-center gap-3">
               <span className="w-16 h-16 rounded-full border-2 border-orange/70 flex items-center justify-center text-orange">
