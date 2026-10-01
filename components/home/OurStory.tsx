@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface OurStoryProps {
   heading?: string;
@@ -14,7 +15,16 @@ export default function OurStory({
       <div className="container-page py-16 grid md:grid-cols-2 gap-10 items-center">
         <div className="order-2 md:order-1">
           <h2 className="font-heading text-3xl font-bold text-brown mb-4">{heading}</h2>
-          <p className="text-brown/80 leading-relaxed">{body}</p>
+          <p className="text-brown/80 leading-relaxed mb-6">{body}</p>
+          <Link
+            href="/about"
+            className="inline-flex items-center gap-2 text-orange font-semibold hover:text-saffron transition-colors"
+          >
+            Read Our Full Story
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4" strokeWidth="2">
+              <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
         </div>
         <div className="order-1 md:order-2 relative aspect-[4/3] rounded-2xl overflow-hidden border border-beige">
           <Image

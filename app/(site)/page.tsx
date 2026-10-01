@@ -10,6 +10,7 @@ import BulkDiscountTiers from "@/components/home/BulkDiscountTiers";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import CategoriesGrid from "@/components/home/CategoriesGrid";
 import FAQPreview from "@/components/home/FAQPreview";
+import SocialCTA from "@/components/home/SocialCTA";
 import NewsletterSignup from "@/components/home/NewsletterSignup";
 
 export const dynamic = "force-dynamic";
@@ -49,6 +50,7 @@ export default async function HomePage() {
       {visible.categories !== false && <CategoriesGrid />}
       <BulkDiscountTiers />
       {visible.faq !== false && <FAQPreview />}
+      <SocialCTA />
       {visible.newsletter !== false && <NewsletterSignup />}
     </>
   );
