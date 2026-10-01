@@ -6,6 +6,7 @@ import FreeFromBadges from "@/components/home/FreeFromBadges";
 import EarlyBirdBanner from "@/components/home/EarlyBirdBanner";
 import IngredientSpotlight from "@/components/home/IngredientSpotlight";
 import OurStory from "@/components/home/OurStory";
+import ComparisonTable from "@/components/home/ComparisonTable";
 import BulkDiscountTiers from "@/components/home/BulkDiscountTiers";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import CategoriesGrid from "@/components/home/CategoriesGrid";
@@ -46,6 +47,7 @@ export default async function HomePage() {
       {visible.ourStory !== false && (
         <OurStory heading={content?.ourStoryHeading || undefined} body={content?.ourStoryBody || undefined} />
       )}
+      <ComparisonTable />
       {visible.whyChooseUs !== false && <WhyChooseUs />}
       {visible.categories !== false && <CategoriesGrid />}
       <BulkDiscountTiers />
