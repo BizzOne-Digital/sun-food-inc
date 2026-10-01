@@ -73,7 +73,8 @@ async function seed() {
       packSize: "1 bar",
       featured: true,
       badges: ["New"],
-      mainImage: "/pro1.png",
+      mainImage: "/images/img1.png",
+      galleryImages: ["/images/img2.png"],
       nutritionInformation:
         "Nutrition Facts — Per 1 bar (40 g)\n" +
         "Calories: 170\n" +
@@ -100,7 +101,7 @@ async function seed() {
       packSize: "6 bars",
       featured: true,
       badges: ["Best Value"],
-      mainImage: "/pro2.png",
+      mainImage: "/images/img3.png",
     },
     {
       name: "Traditional Sunnundalu (10pc)",
@@ -114,7 +115,7 @@ async function seed() {
       packSize: "10 pieces",
       featured: true,
       badges: ["Family Favorite"],
-      mainImage: "/pro3.png",
+      mainImage: "/images/img4.png",
       ingredients:
         "Originally made from urad dal, ghee and sugar. Variants may include peanuts, sugar cane juice sugar or dates paste in place of refined sugar, and peanut, cashew or almond additions.",
     },
