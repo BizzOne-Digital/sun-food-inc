@@ -48,23 +48,23 @@ export default function ComparisonTable() {
         <p className="text-brown/70 text-center mb-10">
           A closer look at what's actually in your snack.
         </p>
-        <div className="max-w-5xl mx-auto rounded-2xl border border-beige overflow-hidden overflow-x-auto">
+        <div className="rounded-2xl border border-beige overflow-hidden overflow-x-auto">
           <div className="min-w-[640px]">
-            <div className="grid grid-cols-4 bg-brown text-cream text-center font-bold text-sm">
-              <div className="p-4 text-left">&nbsp;</div>
-              <div className="p-4 border-l border-cream/20 text-orange">SUNN Foods</div>
-              <div className="p-4 border-l border-cream/20">Traditional Cookie</div>
-              <div className="p-4 border-l border-cream/20">Traditional Snack Bar</div>
+            <div className="grid grid-cols-4 bg-brown text-cream text-center font-bold text-base">
+              <div className="p-5 text-left">&nbsp;</div>
+              <div className="p-5 border-l border-cream/20 text-orange">SUNN Foods</div>
+              <div className="p-5 border-l border-cream/20">Traditional Cookie</div>
+              <div className="p-5 border-l border-cream/20">Traditional Snack Bar</div>
             </div>
             {ROWS.map((row, i) => (
               <div
                 key={row.label}
-                className={`grid grid-cols-4 text-sm ${i % 2 === 0 ? "bg-white" : "bg-soft-bg/40"}`}
+                className={`grid grid-cols-4 text-base ${i % 2 === 0 ? "bg-white" : "bg-soft-bg/40"}`}
               >
-                <div className="p-4 font-semibold text-brown">{row.label}</div>
-                <div className="p-4 border-l border-beige text-leaf font-medium">{row.sunn}</div>
-                <div className="p-4 border-l border-beige text-brown/60">{row.cookie}</div>
-                <div className="p-4 border-l border-beige text-brown/60">{row.snackBar}</div>
+                <div className="p-5 font-semibold text-brown">{row.label}</div>
+                <div className="p-5 border-l border-beige text-leaf font-medium">{row.sunn}</div>
+                <div className="p-5 border-l border-beige text-brown/60">{row.cookie}</div>
+                <div className="p-5 border-l border-beige text-brown/60">{row.snackBar}</div>
               </div>
             ))}
           </div>
