@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const INGREDIENTS = [
   {
@@ -29,26 +29,52 @@ const INGREDIENTS = [
   },
 ];
 
+const COUNT = INGREDIENTS.length;
+// Three looping copies so the track can slide seamlessly in either direction.
+const TRACK = [...INGREDIENTS, ...INGREDIENTS, ...INGREDIENTS];
+
 export default function IngredientSpotlight() {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(COUNT);
+  const [withTransition, setWithTransition] = useState(true);
+  const resetTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function goTo(newIndex: number) {
+    setWithTransition(true);
+    setIndex(newIndex);
+  }
 
   function prev() {
-    setIndex((i) => (i - 1 + INGREDIENTS.length) % INGREDIENTS.length);
+    goTo(index - 1);
   }
   function next() {
-    setIndex((i) => (i + 1) % INGREDIENTS.length);
+    goTo(index + 1);
   }
+
+  // Once we slide past one full loop, snap back to the equivalent position
+  // in the middle copy without a transition so it looks infinite.
+  useEffect(() => {
+    if (index >= COUNT * 2 || index < COUNT) {
+      resetTimeout.current = setTimeout(() => {
+        setWithTransition(false);
+        setIndex(COUNT + (((index - COUNT) % COUNT) + COUNT) % COUNT);
+      }, 500);
+    }
+    return () => {
+      if (resetTimeout.current) clearTimeout(resetTimeout.current);
+    };
+  }, [index]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mediaQuery.matches) return;
     const timer = setInterval(() => {
-      setIndex((i) => (i + 1) % INGREDIENTS.length);
+      setWithTransition(true);
+      setIndex((i) => i + 1);
     }, 4000);
     return () => clearInterval(timer);
   }, []);
 
-  const visible = [0, 1, 2].map((offset) => INGREDIENTS[(index + offset) % INGREDIENTS.length]);
+  const activeDot = ((index % COUNT) + COUNT) % COUNT;
 
   return (
     <section className="bg-soft-bg py-16 relative overflow-hidden">
@@ -72,21 +98,25 @@ export default function IngredientSpotlight() {
             </svg>
           </button>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {visible.map((ing) => (
-              <div
-                key={ing.name}
-                className="bg-white rounded-2xl border border-beige p-6 flex flex-col items-center gap-3 shadow-sm"
-              >
-                <h3 className="font-heading text-xl font-bold text-brown">{ing.name}</h3>
-                <span
-                  className={`inline-block w-fit text-[11px] font-bold uppercase tracking-wide text-white ${ing.tagColor} rounded-full px-3 py-1`}
-                >
-                  {ing.tag}
-                </span>
-                <p className="text-brown/70 text-sm leading-relaxed">{ing.note}</p>
-              </div>
-            ))}
+          <div className="overflow-hidden">
+            <div
+              className={`flex ${withTransition ? "transition-transform duration-500 ease-out" : ""}`}
+              style={{ transform: `translateX(-${index * (100 / 3)}%)` }}
+            >
+              {TRACK.map((ing, i) => (
+                <div key={`${ing.name}-${i}`} className="w-full sm:w-1/3 flex-shrink-0 px-2.5">
+                  <div className="bg-white rounded-2xl border border-beige p-6 flex flex-col items-center gap-3 shadow-sm h-full">
+                    <h3 className="font-heading text-xl font-bold text-brown">{ing.name}</h3>
+                    <span
+                      className={`inline-block w-fit text-[11px] font-bold uppercase tracking-wide text-white ${ing.tagColor} rounded-full px-3 py-1`}
+                    >
+                      {ing.tag}
+                    </span>
+                    <p className="text-brown/70 text-sm leading-relaxed">{ing.note}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <button
@@ -107,9 +137,9 @@ export default function IngredientSpotlight() {
               key={ing.name}
               type="button"
               aria-label={`Go to ${ing.name}`}
-              onClick={() => setIndex(i)}
+              onClick={() => goTo(COUNT + i)}
               className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                i === index ? "bg-brown" : "bg-beige"
+                i === activeDot ? "bg-brown" : "bg-beige"
               }`}
             />
           ))}
