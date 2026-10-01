@@ -65,32 +65,47 @@ export default function Header() {
             aria-label="Toggle menu"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3C2115" strokeWidth="2">
-              {open ? (
-                <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" />
-              ) : (
-                <path d="M3 6h18M3 12h18M3 18h18" strokeLinecap="round" />
-              )}
+              <path
+                d="M3 6h18M3 12h18M3 18h18"
+                strokeLinecap="round"
+                className={`transition-all duration-300 ${open ? "opacity-0" : "opacity-100"}`}
+                style={{ transformOrigin: "center" }}
+              />
+              <path
+                d="M18 6L6 18M6 6l12 12"
+                strokeLinecap="round"
+                className={`transition-all duration-300 ${open ? "opacity-100" : "opacity-0"}`}
+              />
             </svg>
           </button>
         </div>
       </div>
 
-      {open && (
-        <nav className="md:hidden border-t border-beige bg-cream">
+      <nav
+        className={`md:hidden border-t border-beige bg-cream overflow-hidden transition-[grid-template-rows] duration-300 ease-out grid ${
+          open ? "grid-rows-[1fr]" : "grid-rows-[0fr] border-t-0"
+        }`}
+      >
+        <div className="min-h-0 overflow-hidden">
           <div className="container-page flex flex-col py-3">
-            {NAV_LINKS.map((link) => (
+            {NAV_LINKS.map((link, i) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="py-2 text-sm font-semibold text-brown"
+                className="py-2 text-sm font-semibold text-brown transition-all duration-300"
+                style={{
+                  transitionDelay: open ? `${i * 40}ms` : "0ms",
+                  opacity: open ? 1 : 0,
+                  transform: open ? "translateX(0)" : "translateX(-8px)",
+                }}
                 onClick={() => setOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
           </div>
-        </nav>
-      )}
+        </div>
+      </nav>
     </header>
   );
 }

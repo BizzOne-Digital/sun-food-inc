@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import connectToDatabase from "@/lib/mongodb";
 import FAQ from "@/models/FAQ";
 import FAQSearchable from "@/components/faq/FAQSearchable";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "FAQ | SUNN Foods",
@@ -30,10 +31,14 @@ export default async function FAQPage() {
 
   return (
     <div className="container-page py-16 max-w-3xl mx-auto">
-      <h1 className="font-heading text-4xl font-bold text-brown mb-8 text-center">
-        Frequently Asked Questions
-      </h1>
-      <FAQSearchable faqs={faqs} />
+      <ScrollReveal>
+        <h1 className="font-heading text-4xl font-bold text-brown mb-8 text-center">
+          Frequently Asked Questions
+        </h1>
+      </ScrollReveal>
+      <ScrollReveal>
+        <FAQSearchable faqs={faqs} />
+      </ScrollReveal>
     </div>
   );
 }

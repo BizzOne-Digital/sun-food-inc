@@ -19,7 +19,7 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
   return (
     <Link
       href={`/products/${product.slug}`}
-      className="group flex flex-col bg-white rounded-2xl border border-beige overflow-hidden hover:shadow-lg transition-shadow"
+      className="group flex flex-col bg-white rounded-2xl border border-beige overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
     >
       <div className="relative aspect-square bg-soft-bg">
         <SafeImage

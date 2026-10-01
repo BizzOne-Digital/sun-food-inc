@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import connectToDatabase from "@/lib/mongodb";
 import SiteSettings from "@/models/SiteSettings";
 import ContactForm from "@/components/contact/ContactForm";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "Contact Us | SUNN Foods",
@@ -24,14 +25,14 @@ export default async function ContactPage() {
 
   return (
     <div className="container-page py-16">
-      <div className="max-w-3xl mx-auto text-center mb-10">
+      <ScrollReveal className="max-w-3xl mx-auto text-center mb-10">
         <h1 className="font-heading text-4xl font-bold text-brown mb-3">Get in Touch</h1>
         <p className="text-brown/70">
           Questions about our products, orders, or wholesale? We would love to hear from you.
         </p>
-      </div>
+      </ScrollReveal>
 
-      <div className="grid md:grid-cols-[1fr_320px] gap-10 max-w-4xl mx-auto">
+      <ScrollReveal className="grid md:grid-cols-[1fr_320px] gap-10 max-w-4xl mx-auto">
         <ContactForm />
         <div className="bg-soft-bg rounded-2xl p-6 flex flex-col gap-4 h-fit">
           <div>
@@ -60,7 +61,7 @@ export default async function ContactPage() {
             </div>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </div>
   );
 }

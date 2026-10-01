@@ -80,3 +80,31 @@ h1, h2, h3, h4, .font-heading {
     transition: none;
   }
 }
+
+/* Subtle hover lift for pill-shaped CTA buttons/links used across the site */
+a.rounded-full,
+button.rounded-full {
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+a.rounded-full:hover,
+button.rounded-full:hover {
+  transform: scale(1.04);
+}
+a.rounded-full:active,
+button.rounded-full:active {
+  transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.rounded-full,
+  button.rounded-full {
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  a.rounded-full:hover,
+  button.rounded-full:hover,
+  a.rounded-full:active,
+  button.rounded-full:active {
+    transform: none;
+  }
+}

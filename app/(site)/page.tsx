@@ -14,6 +14,7 @@ import CategoriesGrid from "@/components/home/CategoriesGrid";
 import FAQPreview from "@/components/home/FAQPreview";
 import SocialCTA from "@/components/home/SocialCTA";
 import NewsletterSignup from "@/components/home/NewsletterSignup";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export const dynamic = "force-dynamic";
 
@@ -41,21 +42,59 @@ export default async function HomePage() {
         ctaSecondaryText={content?.ctaSecondaryText || undefined}
         ctaSecondaryLink={content?.ctaSecondaryLink || undefined}
       />
-      {visible.earlyBird !== false && <EarlyBirdBanner />}
-      {visible.featured !== false && <FeaturedProducts />}
-      <FreeFromBadges />
-      <IngredientSpotlight />
-      {visible.ourStory !== false && (
-        <OurStory heading={content?.ourStoryHeading || undefined} body={content?.ourStoryBody || undefined} />
+      {visible.earlyBird !== false && (
+        <ScrollReveal>
+          <EarlyBirdBanner />
+        </ScrollReveal>
       )}
-      <QuoteCards />
-      <ComparisonTable />
-      {visible.whyChooseUs !== false && <WhyChooseUs />}
-      {visible.categories !== false && <CategoriesGrid />}
-      <BulkDiscountTiers />
-      {visible.faq !== false && <FAQPreview />}
-      <SocialCTA />
-      {visible.newsletter !== false && <NewsletterSignup />}
+      {visible.featured !== false && (
+        <ScrollReveal>
+          <FeaturedProducts />
+        </ScrollReveal>
+      )}
+      <ScrollReveal>
+        <FreeFromBadges />
+      </ScrollReveal>
+      <ScrollReveal>
+        <IngredientSpotlight />
+      </ScrollReveal>
+      {visible.ourStory !== false && (
+        <ScrollReveal>
+          <OurStory heading={content?.ourStoryHeading || undefined} body={content?.ourStoryBody || undefined} />
+        </ScrollReveal>
+      )}
+      <ScrollReveal>
+        <QuoteCards />
+      </ScrollReveal>
+      <ScrollReveal>
+        <ComparisonTable />
+      </ScrollReveal>
+      {visible.whyChooseUs !== false && (
+        <ScrollReveal>
+          <WhyChooseUs />
+        </ScrollReveal>
+      )}
+      {visible.categories !== false && (
+        <ScrollReveal>
+          <CategoriesGrid />
+        </ScrollReveal>
+      )}
+      <ScrollReveal>
+        <BulkDiscountTiers />
+      </ScrollReveal>
+      {visible.faq !== false && (
+        <ScrollReveal>
+          <FAQPreview />
+        </ScrollReveal>
+      )}
+      <ScrollReveal>
+        <SocialCTA />
+      </ScrollReveal>
+      {visible.newsletter !== false && (
+        <ScrollReveal>
+          <NewsletterSignup />
+        </ScrollReveal>
+      )}
     </>
   );
 }

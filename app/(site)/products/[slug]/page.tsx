@@ -5,6 +5,7 @@ import Product from "@/models/Product";
 import ProductGallery from "@/components/products/ProductGallery";
 import AddToCartBox from "@/components/products/AddToCartBox";
 import ProductCard, { ProductCardData } from "@/components/products/ProductCard";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 async function getProduct(slug: string) {
   try {
@@ -119,14 +120,14 @@ export default async function ProductDetailPage({
       </div>
 
       {related.length > 0 && (
-        <div className="mt-16">
+        <ScrollReveal className="mt-16">
           <h2 className="font-heading text-2xl font-bold text-brown mb-6">You May Also Like</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {related.map((p) => (
               <ProductCard key={p._id} product={p} />
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       )}
     </div>
   );
