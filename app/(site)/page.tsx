@@ -8,6 +8,7 @@ import IngredientSpotlight from "@/components/home/IngredientSpotlight";
 import OurStory from "@/components/home/OurStory";
 import ComparisonTable from "@/components/home/ComparisonTable";
 import QuoteCards from "@/components/home/QuoteCards";
+import ReviewsSection from "@/components/home/ReviewsSection";
 import BulkDiscountTiers from "@/components/home/BulkDiscountTiers";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import CategoriesGrid from "@/components/home/CategoriesGrid";
@@ -65,6 +66,9 @@ export default async function HomePage() {
       )}
       <ScrollReveal>
         <QuoteCards />
+      </ScrollReveal>
+      <ScrollReveal>
+        <ReviewsSection />
       </ScrollReveal>
       <ScrollReveal>
         <ComparisonTable />
