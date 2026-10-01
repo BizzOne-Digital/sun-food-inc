@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const INGREDIENTS = [
   {
@@ -39,6 +39,15 @@ export default function IngredientSpotlight() {
     setIndex((i) => (i + 1) % INGREDIENTS.length);
   }
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mediaQuery.matches) return;
+    const timer = setInterval(() => {
+      setIndex((i) => (i + 1) % INGREDIENTS.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   const visible = [0, 1, 2].map((offset) => INGREDIENTS[(index + offset) % INGREDIENTS.length]);
 
   return (
@@ -51,7 +60,7 @@ export default function IngredientSpotlight() {
         </h2>
         <p className="text-brown/70 mb-10">No confusing labels — just what's actually in your food.</p>
 
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative">
           <button
             type="button"
             onClick={prev}
