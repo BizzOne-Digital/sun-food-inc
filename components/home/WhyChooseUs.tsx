@@ -14,9 +14,21 @@ export default function WhyChooseUs() {
           Why Choose SUNN Foods
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
-          {FEATURES.map((f) => (
-            <div key={f.title} className="bg-white rounded-2xl p-6 flex flex-col items-center text-center border border-beige">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#496F2E" strokeWidth="1.5" className="mb-3">
+          {FEATURES.map((f, i) => (
+            <div
+              key={f.title}
+              className="bg-white rounded-2xl p-6 flex flex-col items-center text-center border border-beige transition-transform duration-300 hover:-translate-y-1 hover:shadow-md"
+            >
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#496F2E"
+                strokeWidth="1.5"
+                className="mb-3 animate-float"
+                style={{ animationDelay: `${i * 0.3}s` }}
+              >
                 <path d={f.icon} />
               </svg>
               <h3 className="font-semibold text-brown mb-1">{f.title}</h3>

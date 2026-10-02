@@ -108,3 +108,35 @@ button.rounded-full:active {
     transform: none;
   }
 }
+
+/* Gentle breathing glow used for small accent icons (e.g. Founder note avatar) */
+@keyframes founder-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(233, 151, 25, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(233, 151, 25, 0);
+  }
+}
+
+/* Gentle floating motion for decorative icon/graphic elements */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+.animate-float {
+  animation: float-y 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
