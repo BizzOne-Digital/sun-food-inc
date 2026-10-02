@@ -6,6 +6,8 @@ import FreeFromBadges from "@/components/home/FreeFromBadges";
 import EarlyBirdBanner from "@/components/home/EarlyBirdBanner";
 import IngredientSpotlight from "@/components/home/IngredientSpotlight";
 import OurStory from "@/components/home/OurStory";
+import FounderNote from "@/components/home/FounderNote";
+import ShippingInfo from "@/components/home/ShippingInfo";
 import ComparisonTable from "@/components/home/ComparisonTable";
 import QuoteCards from "@/components/home/QuoteCards";
 import ReviewsSection from "@/components/home/ReviewsSection";
@@ -57,6 +59,9 @@ export default async function HomePage() {
         <FreeFromBadges />
       </ScrollReveal>
       <ScrollReveal>
+        <ShippingInfo />
+      </ScrollReveal>
+      <ScrollReveal>
         <IngredientSpotlight />
       </ScrollReveal>
       {visible.ourStory !== false && (
@@ -64,6 +69,9 @@ export default async function HomePage() {
           <OurStory heading={content?.ourStoryHeading || undefined} body={content?.ourStoryBody || undefined} />
         </ScrollReveal>
       )}
+      <ScrollReveal>
+        <FounderNote />
+      </ScrollReveal>
       <ScrollReveal>
         <QuoteCards />
       </ScrollReveal>
