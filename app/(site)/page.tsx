@@ -5,6 +5,7 @@ import FeaturedProducts from "@/components/home/FeaturedProducts";
 import FreeFromBadges from "@/components/home/FreeFromBadges";
 import EarlyBirdBanner from "@/components/home/EarlyBirdBanner";
 import IngredientSpotlight from "@/components/home/IngredientSpotlight";
+import ProcessSteps from "@/components/home/ProcessSteps";
 import OurStory from "@/components/home/OurStory";
 import FounderNote from "@/components/home/FounderNote";
 import ShippingInfo from "@/components/home/ShippingInfo";
@@ -64,6 +65,7 @@ export default async function HomePage() {
       <ScrollReveal>
         <IngredientSpotlight />
       </ScrollReveal>
+      <ProcessSteps />
       {visible.ourStory !== false && (
         <ScrollReveal>
           <OurStory heading={content?.ourStoryHeading || undefined} body={content?.ourStoryBody || undefined} />
