@@ -14,7 +14,7 @@ export default function Logo({ className = "" }: LogoProps) {
         alt="SUNN Foods"
         width={1254}
         height={1254}
-        className="h-16 w-auto object-contain"
+        className="h-20 w-auto object-contain"
       />
     </Link>
   );
