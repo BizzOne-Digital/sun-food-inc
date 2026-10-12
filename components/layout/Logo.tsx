@@ -10,11 +10,11 @@ export default function Logo({ showTagline = false, className = "" }: LogoProps)
   return (
     <Link href="/" className={`flex items-center gap-2 group ${className}`}>
       <Image
-        src="/images/logo.png"
+        src="/images/sunn-foods-transparent.png"
         alt="SUNN Foods"
-        width={150}
-        height={100}
-        className="h-10 w-auto object-contain"
+        width={1254}
+        height={1254}
+        className="h-12 w-auto object-contain"
       />
       <span className="flex flex-col leading-tight">
         <span className="font-heading text-xl text-brown font-bold">SUNN Foods</span>
