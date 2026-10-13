@@ -69,6 +69,12 @@ export default function CheckoutPage() {
       });
       const data = await res.json();
       if (!res.ok || !data.success) throw new Error(data.error || "Order failed");
+      if (data.redirectUrl) {
+        // Cart is cleared on the success page once payment is confirmed,
+        // not here, so an abandoned Stripe checkout doesn't lose the cart.
+        window.location.href = data.redirectUrl;
+        return;
+      }
       clearCart();
       router.push(`/checkout/success?order=${data.orderNumber}`);
     } catch (err) {

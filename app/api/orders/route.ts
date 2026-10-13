@@ -100,7 +100,12 @@ export async function POST(request: NextRequest) {
       providerReference: paymentResult.providerReference,
     });
 
-    return NextResponse.json({ success: true, orderNumber: order.orderNumber, orderId: String(order._id) });
+    return NextResponse.json({
+      success: true,
+      orderNumber: order.orderNumber,
+      orderId: String(order._id),
+      redirectUrl: paymentResult.redirectUrl,
+    });
   } catch {
     return NextResponse.json({ success: false, error: "Failed to create order" }, { status: 500 });
   }

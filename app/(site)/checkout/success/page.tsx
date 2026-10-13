@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ClearCartOnLoad from "@/components/checkout/ClearCartOnLoad";
 
 export default async function CheckoutSuccessPage({
   searchParams,
@@ -9,6 +10,7 @@ export default async function CheckoutSuccessPage({
 
   return (
     <div className="container-page py-20 text-center">
+      <ClearCartOnLoad />
       <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#496F2E" strokeWidth="2" className="mx-auto mb-6">
         <circle cx="12" cy="12" r="10" />
         <path d="M8 12l3 3 5-6" strokeLinecap="round" strokeLinejoin="round" />

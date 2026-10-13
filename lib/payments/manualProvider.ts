@@ -1,4 +1,5 @@
 import { PaymentInitParams, PaymentInitResult, PaymentProvider } from "./types";
+import { stripeProvider } from "./stripeProvider";
 
 /**
  * Placeholder "pay on delivery / manual bank transfer" provider.
@@ -17,5 +18,8 @@ export const manualProvider: PaymentProvider = {
 };
 
 export function getPaymentProvider(): PaymentProvider {
+  if (process.env.STRIPE_SECRET_KEY) {
+    return stripeProvider;
+  }
   return manualProvider;
 }
