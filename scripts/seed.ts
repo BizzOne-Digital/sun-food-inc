@@ -134,13 +134,13 @@ async function seed() {
       name: "Kids Bars (8pc)",
       slug: "kids-bars-8pc",
       shortDescription: "Eight kid-friendly bars made for growing families.",
-      price: 15,
+      price: 28.99,
       category: categoryDocs["kids-bars"],
       stock: 100,
       packSize: "8 bars",
       featured: true,
       badges: ["Kid Approved"],
-      mainImage: "/pro4.png",
+      mainImage: "/images/products/kids-bars.png",
     },
   ];
 
