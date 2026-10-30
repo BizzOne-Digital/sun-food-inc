@@ -79,7 +79,9 @@ export default async function ProductDetailPage({
             <p className="text-brown/70 mb-4">{product.shortDescription}</p>
           )}
           <div className="flex items-center gap-3 mb-6">
-            {typeof product.salePrice === "number" && product.salePrice < product.price ? (
+            {product.badges?.includes("Coming Soon") ? (
+              <span className="text-xl font-bold text-brown/60">Coming Soon</span>
+            ) : typeof product.salePrice === "number" && product.salePrice < product.price ? (
               <>
                 <span className="text-2xl font-bold text-orange">${product.salePrice.toFixed(2)}</span>
                 <span className="text-lg text-brown/50 line-through">${product.price.toFixed(2)}</span>
@@ -98,6 +100,7 @@ export default async function ProductDetailPage({
             salePrice={product.salePrice}
             image={product.mainImage}
             stock={product.stock}
+            isComingSoon={product.badges?.includes("Coming Soon")}
           />
 
           <div className="mt-10 flex flex-col gap-6">

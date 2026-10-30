@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/hooks/useCart";
 import { useToast } from "@/components/ui/ToastProvider";
+import { SHIPPING_FEE, SHIPPING_ESTIMATE, SHIPPING_AREA } from "@/lib/shipping";
 
 const PROVINCES = ["ON", "QC", "BC", "AB", "MB", "SK", "NS", "NB", "NL", "PE", "YT", "NT", "NU"];
 
@@ -130,7 +131,7 @@ export default function CheckoutPage() {
         </div>
 
         <div className="bg-soft-bg rounded-xl p-4 text-sm text-brown/80">
-          Payment: Pay on delivery / manual bank transfer. We will contact you to confirm payment details.
+          You&apos;ll be redirected to our secure payment page to complete your order.
         </div>
 
         <button
@@ -150,10 +151,21 @@ export default function CheckoutPage() {
             <span>${(item.price * item.qty).toFixed(2)}</span>
           </div>
         ))}
-        <div className="flex justify-between font-bold text-lg mt-4 pt-4 border-t border-beige">
+        <div className="flex justify-between text-sm mt-4 pt-4 border-t border-beige">
           <span>Subtotal</span>
           <span>${subtotal.toFixed(2)}</span>
         </div>
+        <div className="flex justify-between text-sm mt-2">
+          <span>Shipping</span>
+          <span>${SHIPPING_FEE.toFixed(2)}</span>
+        </div>
+        <div className="flex justify-between font-bold text-lg mt-2 pt-2 border-t border-beige">
+          <span>Total</span>
+          <span>${(subtotal + SHIPPING_FEE).toFixed(2)}</span>
+        </div>
+        <p className="text-xs text-brown/60 mt-4">
+          Estimated delivery: {SHIPPING_ESTIMATE} within {SHIPPING_AREA}.
+        </p>
       </div>
     </div>
   );

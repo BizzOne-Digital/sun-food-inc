@@ -14,7 +14,8 @@ export interface ProductCardData {
 
 export default function ProductCard({ product }: { product: ProductCardData }) {
   const onSale = typeof product.salePrice === "number" && product.salePrice < product.price;
-  const outOfStock = typeof product.stock === "number" && product.stock <= 0;
+  const isComingSoon = product.badges?.includes("Coming Soon");
+  const outOfStock = typeof product.stock === "number" && product.stock <= 0 && !isComingSoon;
 
   return (
     <Link
@@ -46,7 +47,9 @@ export default function ProductCard({ product }: { product: ProductCardData }) {
       <div className="p-4 flex flex-col gap-1">
         <h3 className="font-heading text-lg text-brown">{product.name}</h3>
         <div className="flex items-center gap-2">
-          {onSale ? (
+          {isComingSoon ? (
+            <span className="text-brown/60 font-semibold text-sm">Coming Soon</span>
+          ) : onSale ? (
             <>
               <span className="text-orange font-bold">${product.salePrice!.toFixed(2)}</span>
               <span className="text-sm text-brown/50 line-through">${product.price.toFixed(2)}</span>

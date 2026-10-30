@@ -6,6 +6,7 @@ import { calculateBestDiscount } from "@/lib/discounts";
 import { generateOrderNumber } from "@/lib/orderNumber";
 import { getPaymentProvider } from "@/lib/payments/manualProvider";
 import { requireUser } from "@/lib/userAuth";
+import { SHIPPING_FEE } from "@/lib/shipping";
 
 export const runtime = "nodejs";
 
@@ -62,7 +63,7 @@ export async function POST(request: NextRequest) {
       discounts
     );
 
-    const shipping = 0;
+    const shipping = SHIPPING_FEE;
     const tax = 0;
     const total = Math.max(0, subtotal - discountAmount + shipping + tax);
 

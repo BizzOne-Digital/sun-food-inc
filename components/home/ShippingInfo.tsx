@@ -1,13 +1,14 @@
 import connectToDatabase from "@/lib/mongodb";
 import SiteSettings from "@/models/SiteSettings";
+import { SHIPPING_FEE, SHIPPING_ESTIMATE, SHIPPING_AREA } from "@/lib/shipping";
 
 async function getServiceArea() {
   try {
     await connectToDatabase();
     const settings = await SiteSettings.findOne().lean();
-    return settings?.serviceArea || "Currently serving the Greater Toronto Area.";
+    return settings?.serviceArea || `Currently serving ${SHIPPING_AREA}.`;
   } catch {
-    return "Currently serving the Greater Toronto Area.";
+    return `Currently serving ${SHIPPING_AREA}.`;
   }
 }
 
@@ -38,6 +39,9 @@ export default async function ShippingInfo() {
           </svg>
           <h3 className="font-heading text-lg font-bold text-brown">{ITEMS[0].label}</h3>
           <p className="text-brown/70 text-sm">{serviceArea}</p>
+          <p className="text-brown/60 text-xs">
+            {SHIPPING_ESTIMATE} delivery &middot; ${SHIPPING_FEE.toFixed(2)} flat rate within {SHIPPING_AREA}
+          </p>
         </div>
         <div className="flex flex-col items-center gap-3">
           <svg viewBox="0 0 24 24" fill="none" stroke="#496F2E" strokeWidth="1.6" className="w-8 h-8">

@@ -13,6 +13,7 @@ interface AddToCartBoxProps {
   salePrice?: number;
   image: string;
   stock: number;
+  isComingSoon?: boolean;
 }
 
 export default function AddToCartBox({
@@ -23,13 +24,14 @@ export default function AddToCartBox({
   salePrice,
   image,
   stock,
+  isComingSoon = false,
 }: AddToCartBoxProps) {
   const [qty, setQty] = useState(1);
   const { addItem } = useCart();
   const { showToast } = useToast();
   const router = useRouter();
   const effectivePrice = typeof salePrice === "number" && salePrice < price ? salePrice : price;
-  const outOfStock = stock <= 0;
+  const outOfStock = stock <= 0 || isComingSoon;
 
   function handleAdd() {
     addItem({ productId, name, slug, price: effectivePrice, image }, qty);
@@ -60,7 +62,7 @@ export default function AddToCartBox({
           </button>
         </div>
         <span className={`text-sm font-semibold ${outOfStock ? "text-orange" : "text-leaf"}`}>
-          {outOfStock ? "Out of Stock" : `${stock} in stock`}
+          {isComingSoon ? "Coming Soon" : outOfStock ? "Out of Stock" : `${stock} in stock`}
         </span>
       </div>
       <div className="flex gap-3">
