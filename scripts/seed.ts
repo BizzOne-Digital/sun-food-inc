@@ -103,8 +103,24 @@ async function seed() {
       mainImage: "/images/products/protein-bar-box.png",
     },
     {
+      name: "Traditional Sunnundalu (10pc)",
+      slug: "traditional-sunnundalu-10pc",
+      shortDescription: "Authentic Andhra tradition in every bite.",
+      description:
+        "Sunnundalu is a cherished South Indian sweet known for its rich aroma, velvety texture, and nourishing ingredients. Made from freshly roasted urad dal, pure ghee, and just the right amount of sweetness, each laddu delivers the comforting taste of home and tradition.\n\nOur Sunnundalu are handcrafted in small batches, following time-honoured methods that bring out the natural flavour of urad dal and the richness of ghee. Whether enjoyed during festivals, celebrations, or as a daily treat, Sunnundalu brings warmth and joy with every bite.",
+      price: 15,
+      category: categoryDocs["sunnundalu"],
+      stock: 80,
+      packSize: "10 pieces",
+      featured: true,
+      badges: ["Family Favorite"],
+      mainImage: "/images/img4.png",
+      ingredients:
+        "Originally made from urad dal, ghee and sugar. Variants may include peanuts, sugar cane juice sugar or dates paste in place of refined sugar, and peanut, cashew or almond additions.",
+    },
+    {
       name: "Sunnundalu Stand-Up Pouch (15 Balls)",
-      slug: "sunnundalu-stand-up-pouch",
+      slug: "sunnundalu-pouch-15-balls",
       shortDescription: "A resealable stand-up pouch of our traditional sunnundalu, 15 balls.",
       description:
         "Sunnundalu is a cherished South Indian sweet known for its rich aroma, velvety texture, and nourishing ingredients. Made from freshly roasted urad dal, pure ghee, and just the right amount of sweetness, each laddu delivers the comforting taste of home and tradition.\n\nOur Sunnundalu are handcrafted in small batches, following time-honoured methods that bring out the natural flavour of urad dal and the richness of ghee. Whether enjoyed during festivals, celebrations, or as a daily treat, Sunnundalu brings warmth and joy with every bite.",
@@ -113,7 +129,7 @@ async function seed() {
       stock: 100,
       packSize: "15 balls (~450g)",
       featured: true,
-      badges: ["Family Favorite"],
+      badges: ["New"],
       mainImage: "/images/products/sunnundalu-pouch.png",
       ingredients:
         "Originally made from urad dal, ghee and sugar. Variants may include peanuts, sugar cane juice sugar or dates paste in place of refined sugar, and peanut, cashew or almond additions.",
