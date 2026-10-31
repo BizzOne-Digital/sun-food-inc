@@ -26,7 +26,7 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
     address: { type: String, default: "Toronto, Ontario, Canada" },
     serviceArea: { type: String, default: "Currently serving the Greater Toronto Area." },
     socialFacebook: { type: String, default: "" },
-    socialInstagram: { type: String, default: "" },
+    socialInstagram: { type: String, default: "https://www.instagram.com/sunnfoods.inc" },
     socialTwitter: { type: String, default: "" },
     footerText: { type: String, default: "Nourishing tradition, made for today." },
     seoTitle: { type: String, default: "SUNN Foods | Plant-Based Protein Bars & Sunnundalu" },

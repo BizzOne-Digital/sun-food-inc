@@ -5,6 +5,8 @@ import { useState } from "react";
 import Logo from "./Logo";
 import { useCart } from "@/hooks/useCart";
 
+const INSTAGRAM_URL = "https://www.instagram.com/sunnfoods.inc";
+
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
@@ -35,6 +37,20 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full bg-white border border-beige hover:border-orange transition-colors"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3C2115" strokeWidth="1.8">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="0.8" fill="#3C2115" stroke="none" />
+            </svg>
+          </a>
+
           <Link
             href="/cart"
             className="relative flex items-center justify-center w-10 h-10 rounded-full bg-white border border-beige hover:border-orange transition-colors"
@@ -103,6 +119,15 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-2 text-sm font-semibold text-brown"
+              onClick={() => setOpen(false)}
+            >
+              Instagram
+            </a>
           </div>
         </div>
       </nav>
