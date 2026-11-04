@@ -2,11 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import connectToDatabase from "@/lib/mongodb";
 import Order from "@/models/Order";
 import Discount from "@/models/Discount";
-import { calculateBestDiscount } from "@/lib/discounts";
+import { calculateBestDiscount, calculateCodeDiscount } from "@/lib/discounts";
 import { generateOrderNumber } from "@/lib/orderNumber";
 import { getPaymentProvider } from "@/lib/payments/manualProvider";
 import { requireUser } from "@/lib/userAuth";
 import { SHIPPING_FEE } from "@/lib/shipping";
+import { calculateHst } from "@/lib/tax";
 
 export const runtime = "nodejs";
 
@@ -21,7 +22,7 @@ interface IncomingItem {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { items, customerInfo, shippingAddress, orderNotes } = body;
+    const { items, customerInfo, shippingAddress, orderNotes, promoCode } = body;
 
     if (!Array.isArray(items) || items.length === 0) {
       return NextResponse.json({ success: false, error: "Cart is empty" }, { status: 400 });
@@ -57,14 +58,31 @@ export async function POST(request: NextRequest) {
     }
 
     const subtotal = validItems.reduce((sum, i) => sum + i.price * i.qty, 0);
-    const discounts = await Discount.find({ active: true }).lean();
-    const discountAmount = calculateBestDiscount(
-      validItems.map((i) => ({ productId: i.productId, price: i.price, qty: i.qty })),
-      discounts
-    );
+    const discountableItems = validItems.map((i) => ({ productId: i.productId, price: i.price, qty: i.qty }));
+
+    const discounts = await Discount.find({ active: true, code: { $exists: false } }).lean();
+    let discountAmount = calculateBestDiscount(discountableItems, discounts);
+
+    if (typeof promoCode === "string" && promoCode.trim()) {
+      const codeDiscount = await Discount.findOne({
+        active: true,
+        code: promoCode.trim().toUpperCase(),
+      }).lean();
+      if (!codeDiscount) {
+        return NextResponse.json({ success: false, error: "Invalid promo code" }, { status: 400 });
+      }
+      const codeAmount = calculateCodeDiscount(discountableItems, codeDiscount);
+      if (codeAmount <= 0) {
+        return NextResponse.json(
+          { success: false, error: "This promo code doesn't apply to your cart" },
+          { status: 400 }
+        );
+      }
+      discountAmount = Math.max(discountAmount, codeAmount);
+    }
 
     const shipping = SHIPPING_FEE;
-    const tax = 0;
+    const tax = calculateHst(Math.max(0, subtotal - discountAmount) + shipping);
     const total = Math.max(0, subtotal - discountAmount + shipping + tax);
 
     const orderNumber = generateOrderNumber();

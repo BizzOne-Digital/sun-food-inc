@@ -32,9 +32,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: "Valid value is required" }, { status: 400 });
     }
     await connectToDatabase();
+    const code = typeof body.code === "string" && body.code.trim() ? body.code.trim().toUpperCase() : undefined;
+    if (code) {
+      const existing = await Discount.findOne({ code });
+      if (existing) {
+        return NextResponse.json({ success: false, error: "Promo code already in use" }, { status: 400 });
+      }
+    }
     const discount = await Discount.create({
       title: body.title.trim(),
       description: body.description || "",
+      code,
       type: body.type,
       value: body.value,
       minQuantity: body.minQuantity || 1,

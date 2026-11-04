@@ -5,6 +5,7 @@ export type DiscountType = "percentage" | "fixed";
 export interface IDiscount extends mongoose.Document {
   title: string;
   description?: string;
+  code?: string;
   type: DiscountType;
   value: number;
   minQuantity?: number;
@@ -22,6 +23,7 @@ const DiscountSchema = new Schema<IDiscount>(
   {
     title: { type: String, required: true },
     description: { type: String, default: "" },
+    code: { type: String, trim: true, uppercase: true, default: undefined },
     type: { type: String, enum: ["percentage", "fixed"], required: true },
     value: { type: Number, required: true },
     minQuantity: { type: Number, default: 1 },
@@ -34,5 +36,7 @@ const DiscountSchema = new Schema<IDiscount>(
   },
   { timestamps: true }
 );
+
+DiscountSchema.index({ code: 1 }, { unique: true, sparse: true });
 
 export default models.Discount || model<IDiscount>("Discount", DiscountSchema);

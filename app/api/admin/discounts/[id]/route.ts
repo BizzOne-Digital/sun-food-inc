@@ -20,6 +20,16 @@ export async function PUT(
 
     discount.title = body.title ?? discount.title;
     discount.description = body.description ?? discount.description;
+    if (typeof body.code === "string") {
+      const code = body.code.trim() ? body.code.trim().toUpperCase() : undefined;
+      if (code && code !== discount.code) {
+        const existing = await Discount.findOne({ code, _id: { $ne: discount._id } });
+        if (existing) {
+          return NextResponse.json({ success: false, error: "Promo code already in use" }, { status: 400 });
+        }
+      }
+      discount.code = code;
+    }
     if (["percentage", "fixed"].includes(body.type)) discount.type = body.type;
     if (typeof body.value === "number") discount.value = body.value;
     if (typeof body.minQuantity === "number") discount.minQuantity = body.minQuantity;

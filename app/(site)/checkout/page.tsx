@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCart } from "@/hooks/useCart";
 import { useToast } from "@/components/ui/ToastProvider";
 import { SHIPPING_FEE, SHIPPING_ESTIMATE, SHIPPING_AREA } from "@/lib/shipping";
+import { calculateHst } from "@/lib/tax";
 
 const PROVINCES = ["ON", "QC", "BC", "AB", "MB", "SK", "NS", "NB", "NL", "PE", "YT", "NT", "NU"];
 
@@ -13,6 +14,7 @@ export default function CheckoutPage() {
   const router = useRouter();
   const { showToast } = useToast();
   const [submitting, setSubmitting] = useState(false);
+  const [promoCode, setPromoCode] = useState("");
 
   const [form, setForm] = useState({
     firstName: "",
@@ -66,6 +68,7 @@ export default function CheckoutPage() {
             country: form.country,
           },
           orderNotes: form.notes,
+          promoCode: promoCode.trim() || undefined,
         }),
       });
       const data = await res.json();
@@ -80,7 +83,6 @@ export default function CheckoutPage() {
       router.push(`/checkout/success?order=${data.orderNumber}`);
     } catch (err) {
       showToast(err instanceof Error ? err.message : "Order failed", "error");
-      router.push("/checkout/cancelled");
     } finally {
       setSubmitting(false);
     }
@@ -151,6 +153,15 @@ export default function CheckoutPage() {
             <span>${(item.price * item.qty).toFixed(2)}</span>
           </div>
         ))}
+        <div className="mt-4 pt-4 border-t border-beige">
+          <label className="text-sm font-semibold text-brown mb-1 block">Promo Code</label>
+          <input
+            value={promoCode}
+            onChange={(e) => setPromoCode(e.target.value)}
+            placeholder="Enter code"
+            className="w-full border border-beige rounded-lg px-3 py-2 text-sm uppercase"
+          />
+        </div>
         <div className="flex justify-between text-sm mt-4 pt-4 border-t border-beige">
           <span>Subtotal</span>
           <span>${subtotal.toFixed(2)}</span>
@@ -159,9 +170,13 @@ export default function CheckoutPage() {
           <span>Shipping</span>
           <span>${SHIPPING_FEE.toFixed(2)}</span>
         </div>
+        <div className="flex justify-between text-sm mt-2">
+          <span>HST (13%)</span>
+          <span>${calculateHst(subtotal + SHIPPING_FEE).toFixed(2)}</span>
+        </div>
         <div className="flex justify-between font-bold text-lg mt-2 pt-2 border-t border-beige">
           <span>Total</span>
-          <span>${(subtotal + SHIPPING_FEE).toFixed(2)}</span>
+          <span>${(subtotal + SHIPPING_FEE + calculateHst(subtotal + SHIPPING_FEE)).toFixed(2)}</span>
         </div>
         <p className="text-xs text-brown/60 mt-4">
           Estimated delivery: {SHIPPING_ESTIMATE} within {SHIPPING_AREA}.

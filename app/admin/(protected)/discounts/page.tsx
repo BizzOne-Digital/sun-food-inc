@@ -7,6 +7,7 @@ interface Discount {
   _id: string;
   title: string;
   description?: string;
+  code?: string;
   type: "percentage" | "fixed";
   value: number;
   minQuantity?: number;
@@ -19,6 +20,7 @@ interface Discount {
 const EMPTY = {
   title: "",
   description: "",
+  code: "",
   type: "percentage" as "percentage" | "fixed",
   value: 0,
   minQuantity: 1,
@@ -49,6 +51,7 @@ export default function AdminDiscountsPage() {
     setForm({
       title: d.title,
       description: d.description || "",
+      code: d.code || "",
       type: d.type,
       value: d.value,
       minQuantity: d.minQuantity || 1,
@@ -98,6 +101,7 @@ export default function AdminDiscountsPage() {
             <thead>
               <tr className="text-left border-b border-beige">
                 <th className="p-4">Title</th>
+                <th className="p-4">Code</th>
                 <th className="p-4">Type</th>
                 <th className="p-4">Value</th>
                 <th className="p-4">Status</th>
@@ -108,6 +112,7 @@ export default function AdminDiscountsPage() {
               {discounts.map((d) => (
                 <tr key={d._id} className="border-b border-beige/60">
                   <td className="p-4 font-semibold text-brown">{d.title}</td>
+                  <td className="p-4">{d.code || "—"}</td>
                   <td className="p-4">{d.type}</td>
                   <td className="p-4">{d.type === "percentage" ? `${d.value}%` : `$${d.value}`}</td>
                   <td className="p-4">{d.active ? "Active" : "Inactive"}</td>
@@ -118,7 +123,7 @@ export default function AdminDiscountsPage() {
                 </tr>
               ))}
               {discounts.length === 0 && (
-                <tr><td colSpan={5} className="p-6 text-center text-brown/60">No discounts yet.</td></tr>
+                <tr><td colSpan={6} className="p-6 text-center text-brown/60">No discounts yet.</td></tr>
               )}
             </tbody>
           </table>
@@ -128,6 +133,12 @@ export default function AdminDiscountsPage() {
           <h2 className="font-semibold text-brown">{editingId ? "Edit Discount" : "New Discount"}</h2>
           <input required placeholder="Title" value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} className="border border-beige rounded-lg px-3 py-2" />
           <textarea placeholder="Description" value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} className="border border-beige rounded-lg px-3 py-2" rows={2} />
+          <input
+            placeholder="Promo Code (optional, e.g. WELCOME10)"
+            value={form.code}
+            onChange={(e) => setForm((f) => ({ ...f, code: e.target.value.toUpperCase() }))}
+            className="border border-beige rounded-lg px-3 py-2 uppercase"
+          />
           <div className="grid grid-cols-2 gap-2">
             <select value={form.type} onChange={(e) => setForm((f) => ({ ...f, type: e.target.value as "percentage" | "fixed" }))} className="border border-beige rounded-lg px-3 py-2">
               <option value="percentage">Percentage</option>
