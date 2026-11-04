@@ -42,6 +42,7 @@ async function seed() {
     { name: "Protein Bars", slug: "protein-bars", description: "Plant-based protein bars for everyday energy.", image: "/cat1.png" },
     { name: "Sunnundalu", slug: "sunnundalu", description: "Traditional South Indian urad dal and ghee sweets.", image: "/cat2.png" },
     { name: "Kids Bars", slug: "kids-bars", description: "Family-friendly bars made with kids in mind.", image: "/cat3.png" },
+    { name: "Gifts & Festival Bundles", slug: "gifts-bundles", description: "Premium gift boxes for festivals and special occasions.", image: "/images/products/sunnundalu-gift-box.png" },
   ];
   const categoryDocs: Record<string, mongoose.Types.ObjectId> = {};
   for (const c of categoryDefs) {
@@ -139,7 +140,7 @@ async function seed() {
       slug: "sunnundalu-luxury-gift-box",
       shortDescription: "A premium rigid gift box of sunnundalu, up to 12 balls.",
       price: 0,
-      category: categoryDocs["sunnundalu"],
+      category: categoryDocs["gifts-bundles"],
       stock: 0,
       packSize: "Up to 12 balls",
       featured: false,
@@ -157,6 +158,19 @@ async function seed() {
       featured: true,
       badges: ["Kid Approved"],
       mainImage: "/images/products/kids-bars.png",
+    },
+    {
+      name: "Test Product ($1)",
+      slug: "test-product-1-dollar",
+      shortDescription: "Internal test product for verifying checkout, Stripe payment, and order confirmation.",
+      description:
+        "This is a $1 test product used only to verify the order flow end-to-end (cart, Stripe checkout, order creation). Not a real product — safe to delete once testing is complete.",
+      price: 1.0,
+      stock: 999,
+      packSize: "1 unit",
+      featured: false,
+      badges: ["Test"],
+      mainImage: "/images/placeholder-product.svg",
     },
   ];
 
