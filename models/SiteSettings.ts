@@ -38,7 +38,7 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
     earlyBirdEnabled: { type: Boolean, default: true },
     earlyBirdText: {
       type: String,
-      default: "Early Bird Special: Buy 3 boxes and save 30%. Limited time offer.",
+      default: "Buy 3 or more products in one order and save 10% automatically. Or use code EARLYBIRD for $5 off.",
     },
   },
   { timestamps: true }

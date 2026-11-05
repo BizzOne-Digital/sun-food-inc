@@ -16,7 +16,8 @@ export default async function EarlyBirdBanner() {
   if (settings && settings.earlyBirdEnabled === false) return null;
 
   const text =
-    settings?.earlyBirdText || "Early Bird Special: Buy 3 boxes and save 30%. Limited time offer.";
+    settings?.earlyBirdText ||
+    "Buy 3 or more products in one order and save 10% automatically. Or use code EARLYBIRD for $5 off.";
 
   return (
     <section className="bg-orange text-white">

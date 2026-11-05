@@ -68,7 +68,7 @@ async function seed() {
       description:
         "Our Urad Protein Bar brings the beloved South Indian sweet, Sunnundalu, into a modern, easy-to-enjoy format. Made from slow-roasted urad dal, pure ghee, and refined sugar, this bar captures the warmth, aroma, and melt-in-your-mouth richness of the original recipe.\n\nEach bar is handcrafted in small batches, preserving the traditional flavour while offering a convenient, individually wrapped snack you can enjoy anytime — at work, after meals, or on the go.",
       ingredients: "Urad dal, ghee, refined sugar.",
-      price: 1.99,
+      price: 2.99,
       category: categoryDocs["protein-bars"],
       stock: 0,
       packSize: "1 bar",
@@ -125,7 +125,7 @@ async function seed() {
       shortDescription: "A resealable stand-up pouch of our traditional sunnundalu, 15 balls.",
       description:
         "Sunnundalu is a cherished South Indian sweet known for its rich aroma, velvety texture, and nourishing ingredients. Made from freshly roasted urad dal, pure ghee, and just the right amount of sweetness, each laddu delivers the comforting taste of home and tradition.\n\nOur Sunnundalu are handcrafted in small batches, following time-honoured methods that bring out the natural flavour of urad dal and the richness of ghee. Whether enjoyed during festivals, celebrations, or as a daily treat, Sunnundalu brings warmth and joy with every bite.",
-      price: 35.99,
+      price: 29.99,
       category: categoryDocs["sunnundalu"],
       stock: 100,
       packSize: "15 balls (~450g)",
@@ -136,25 +136,40 @@ async function seed() {
         "Originally made from urad dal, ghee and sugar. Variants may include peanuts, sugar cane juice sugar or dates paste in place of refined sugar, and peanut, cashew or almond additions.",
     },
     {
+      name: "Sunnundalu Stand-Up Pouch - Cashew (15 Balls)",
+      slug: "sunnundalu-pouch-cashew",
+      shortDescription: "A cashew variant of our traditional sunnundalu, 15 balls, in a resealable stand-up pouch.",
+      description:
+        "A variant of our traditional sunnundalu made with cashew in place of refined sugar, following the same time-honoured small-batch method.",
+      ingredients: "Urad dal, ghee, cashew.",
+      price: 34.99,
+      category: categoryDocs["sunnundalu"],
+      stock: 100,
+      packSize: "15 balls (~600g)",
+      featured: false,
+      badges: ["New"],
+      mainImage: "/images/products/sunnundalu-pouch.png",
+    },
+    {
       name: "Sunnundalu Luxury Gift Box",
       slug: "sunnundalu-luxury-gift-box",
       shortDescription: "A premium rigid gift box of sunnundalu, up to 12 balls.",
-      price: 0,
+      price: 32.99,
       category: categoryDocs["gifts-bundles"],
-      stock: 0,
-      packSize: "Up to 12 balls",
+      stock: 50,
+      packSize: "12 balls (~480g)",
       featured: false,
-      badges: ["Coming Soon"],
+      badges: ["Premium Gift"],
       mainImage: "/images/products/sunnundalu-gift-box.png",
     },
     {
-      name: "Kids Bars (8pc)",
-      slug: "kids-bars-8pc",
-      shortDescription: "Eight kid-friendly bars made for growing families.",
+      name: "Kids Bars (10pc)",
+      slug: "kids-bars-10pc",
+      shortDescription: "Ten kid-friendly bars made for growing families.",
       price: 28.99,
       category: categoryDocs["kids-bars"],
       stock: 100,
-      packSize: "8 bars",
+      packSize: "10 bars (~400g)",
       featured: true,
       badges: ["Kid Approved"],
       mainImage: "/images/products/kids-bars.png",
@@ -233,18 +248,33 @@ async function seed() {
   }
   console.log("Page content scaffolding created.");
 
-  // Early bird discount example
-  const existingDiscount = await Discount.findOne({ title: "Early Bird: Buy 3 Boxes, Save 30%" });
-  if (!existingDiscount) {
+  // Automatic bulk discount
+  const existingBulkDiscount = await Discount.findOne({ title: "Buy 3 or More, Save 10%" });
+  if (!existingBulkDiscount) {
     await Discount.create({
-      title: "Early Bird: Buy 3 Boxes, Save 30%",
-      description: "Buy 3 or more boxes and save 30% automatically at checkout.",
+      title: "Buy 3 or More, Save 10%",
+      description: "Buy 3 or more products in one purchase and automatically save 10%.",
       type: "percentage",
-      value: 30,
+      value: 10,
       minQuantity: 3,
       active: true,
     });
-    console.log("Early bird discount seeded.");
+    console.log("Bulk discount seeded.");
+  }
+
+  // EARLYBIRD promo code
+  const existingCode = await Discount.findOne({ code: "EARLYBIRD" });
+  if (!existingCode) {
+    await Discount.create({
+      title: "Early Bird $5 Off",
+      description: "Use code EARLYBIRD for $5 off your order.",
+      code: "EARLYBIRD",
+      type: "fixed",
+      value: 5,
+      minQuantity: 1,
+      active: true,
+    });
+    console.log("EARLYBIRD promo code seeded.");
   }
 
   console.log("Seed complete.");
