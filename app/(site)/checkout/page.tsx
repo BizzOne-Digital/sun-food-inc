@@ -15,6 +15,10 @@ export default function CheckoutPage() {
   const { showToast } = useToast();
   const [submitting, setSubmitting] = useState(false);
   const [promoCode, setPromoCode] = useState("");
+  const [applyingPromo, setApplyingPromo] = useState(false);
+  const [appliedDiscount, setAppliedDiscount] = useState<{ code: string; amount: number; title: string } | null>(
+    null
+  );
 
   const [form, setForm] = useState({
     firstName: "",
@@ -32,6 +36,38 @@ export default function CheckoutPage() {
 
   function update(field: string, value: string) {
     setForm((f) => ({ ...f, [field]: value }));
+  }
+
+  async function handleApplyPromo() {
+    if (!promoCode.trim()) {
+      showToast("Enter a promo code first", "error");
+      return;
+    }
+    setApplyingPromo(true);
+    try {
+      const res = await fetch("/api/discounts/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: promoCode,
+          items: items.map((i) => ({ productId: i.productId, price: i.price, qty: i.qty })),
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || "Invalid promo code");
+      setAppliedDiscount({ code: promoCode.trim().toUpperCase(), amount: data.discountAmount, title: data.title });
+      showToast(`Promo applied: ${data.title}`, "success");
+    } catch (err) {
+      setAppliedDiscount(null);
+      showToast(err instanceof Error ? err.message : "Invalid promo code", "error");
+    } finally {
+      setApplyingPromo(false);
+    }
+  }
+
+  function removePromo() {
+    setAppliedDiscount(null);
+    setPromoCode("");
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -155,28 +191,65 @@ export default function CheckoutPage() {
         ))}
         <div className="mt-4 pt-4 border-t border-beige">
           <label className="text-sm font-semibold text-brown mb-1 block">Promo Code</label>
-          <input
-            value={promoCode}
-            onChange={(e) => setPromoCode(e.target.value)}
-            placeholder="Enter code"
-            className="w-full border border-beige rounded-lg px-3 py-2 text-sm uppercase"
-          />
+          {appliedDiscount ? (
+            <div className="flex items-center justify-between bg-leaf/10 border border-leaf rounded-lg px-3 py-2 text-sm">
+              <span className="text-leaf font-semibold">{appliedDiscount.code} applied</span>
+              <button type="button" onClick={removePromo} className="text-brown/60 underline text-xs">
+                Remove
+              </button>
+            </div>
+          ) : (
+            <div className="flex gap-2">
+              <input
+                value={promoCode}
+                onChange={(e) => setPromoCode(e.target.value)}
+                placeholder="Enter code"
+                className="flex-1 border border-beige rounded-lg px-3 py-2 text-sm uppercase"
+              />
+              <button
+                type="button"
+                onClick={handleApplyPromo}
+                disabled={applyingPromo}
+                className="border-2 border-orange text-orange font-semibold px-4 py-2 rounded-lg hover:bg-orange hover:text-white transition-colors disabled:opacity-60 text-sm"
+              >
+                {applyingPromo ? "..." : "Apply"}
+              </button>
+            </div>
+          )}
         </div>
         <div className="flex justify-between text-sm mt-4 pt-4 border-t border-beige">
           <span>Subtotal</span>
           <span>${subtotal.toFixed(2)}</span>
         </div>
+        {appliedDiscount && (
+          <div className="flex justify-between text-sm mt-2 text-leaf">
+            <span>Discount ({appliedDiscount.title})</span>
+            <span>-${appliedDiscount.amount.toFixed(2)}</span>
+          </div>
+        )}
         <div className="flex justify-between text-sm mt-2">
           <span>Shipping</span>
           <span>${SHIPPING_FEE.toFixed(2)}</span>
         </div>
         <div className="flex justify-between text-sm mt-2">
           <span>HST (13%)</span>
-          <span>${calculateHst(subtotal + SHIPPING_FEE).toFixed(2)}</span>
+          <span>
+            $
+            {calculateHst(
+              Math.max(0, subtotal - (appliedDiscount?.amount || 0)) + SHIPPING_FEE
+            ).toFixed(2)}
+          </span>
         </div>
         <div className="flex justify-between font-bold text-lg mt-2 pt-2 border-t border-beige">
           <span>Total</span>
-          <span>${(subtotal + SHIPPING_FEE + calculateHst(subtotal + SHIPPING_FEE)).toFixed(2)}</span>
+          <span>
+            $
+            {(
+              Math.max(0, subtotal - (appliedDiscount?.amount || 0)) +
+              SHIPPING_FEE +
+              calculateHst(Math.max(0, subtotal - (appliedDiscount?.amount || 0)) + SHIPPING_FEE)
+            ).toFixed(2)}
+          </span>
         </div>
         <p className="text-xs text-brown/60 mt-4">
           Estimated delivery: {SHIPPING_ESTIMATE} within {SHIPPING_AREA}.
