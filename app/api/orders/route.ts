@@ -87,11 +87,13 @@ export async function POST(request: NextRequest) {
 
     const orderNumber = generateOrderNumber();
     const provider = getPaymentProvider();
+    const siteUrl = request.nextUrl.origin || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
     const paymentResult = await provider.initPayment({
       orderNumber,
       amount: total,
       currency: "CAD",
       customerEmail: customerInfo.email,
+      siteUrl,
     });
 
     const session = await requireUser(request);

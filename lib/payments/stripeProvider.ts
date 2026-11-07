@@ -13,7 +13,7 @@ export const stripeProvider: PaymentProvider = {
   name: "stripe",
   async initPayment(params: PaymentInitParams): Promise<PaymentInitResult> {
     const stripe = getStripeClient();
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const siteUrl = params.siteUrl;
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",

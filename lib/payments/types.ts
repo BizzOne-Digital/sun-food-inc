@@ -3,6 +3,7 @@ export interface PaymentInitParams {
   amount: number;
   currency: string;
   customerEmail: string;
+  siteUrl: string;
 }
 
 export interface PaymentInitResult {
