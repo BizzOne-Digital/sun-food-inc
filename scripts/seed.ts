@@ -174,19 +174,6 @@ async function seed() {
       badges: ["Kid Approved"],
       mainImage: "/images/products/kids-bars.png",
     },
-    {
-      name: "Test Product ($1)",
-      slug: "test-product-1-dollar",
-      shortDescription: "Internal test product for verifying checkout, Stripe payment, and order confirmation.",
-      description:
-        "This is a $1 test product used only to verify the order flow end-to-end (cart, Stripe checkout, order creation). Not a real product — safe to delete once testing is complete.",
-      price: 1.0,
-      stock: 999,
-      packSize: "1 unit",
-      featured: false,
-      badges: ["Test"],
-      mainImage: "/images/placeholder-product.svg",
-    },
   ];
 
   for (const p of productDefs) {
